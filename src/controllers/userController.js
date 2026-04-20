@@ -6,8 +6,8 @@ exports.getProfile = async (req, res) => {
 
 exports.updateProfile = async (req, res) => {
   try {
-    const { name, status } = req.body;
-    const updates = { name, status };
+    const { name, status, nickName, gender, country, language } = req.body;
+    const updates = { name, status, nickName, gender, country, language };
     if (req.file) updates.avatar = `/uploads/${req.file.filename}`;
 
     const user = await User.findByIdAndUpdate(req.user._id, updates, { new: true }).select("-password");
